@@ -1,0 +1,7 @@
+pyproject.toml
+src/sarmal/__init__.py
+src/sarmal/example.py
+src/sarmal.egg-info/PKG-INFO
+src/sarmal.egg-info/SOURCES.txt
+src/sarmal.egg-info/dependency_links.txt
+src/sarmal.egg-info/top_level.txt
