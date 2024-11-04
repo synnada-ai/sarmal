@@ -188,6 +188,22 @@ def test_composite_1_extend_from_inputs():
     assert_results_equal(grads_1, grads_2)
 
 
+def test_readme_model_3():
+    import mithril as ml
+
+    # Build a simple linear model
+    model = Linear(256)
+    # Generate a PyTorch backend with a (2,) device mesh
+    backend = ml.TorchBackend(device_mesh=(2, 1))
+    # Compile the model
+    pm = ml.compile(model, backend, jit=False, static_keys={"input": ml.TBD})
+    # Generate sharded data and parameters
+    params = {"w": backend.ones([128, 256]), "b": backend.ones([256])}
+    input = {"input": backend.ones(256, 128, device_mesh=(2, 1))}
+    # Run the compiled model
+    output = pm.evaluate(params, input)  # noqa
+
+
 def test_primitive_model_with_context():
     model = Buffer()
     context = TrainModel(model)
@@ -6930,3 +6946,99 @@ def test_output_keys_canonical_output_2():
     model2 += model(output=IOKey("output"))
 
     assert set(model2.output_keys) == set(["output", "#canonical_output"])
+
+
+def test_readme_model_1():
+    from mithril.models import Add, LeakyRelu, Linear, Model, Relu
+
+    # A simple two-layer network where connections are
+    # made implicitly through "standard" inputs/outputs.
+    # Note the use of the "+=" operator for adding new models.
+    model1 = Model()
+    model1 += Linear(dimension=32)
+    model1 += Relu()
+    model1 += Linear(dimension=16)(output="output")
+
+    # Let's make another network just like the one above.
+    model2 = Model()
+    model2 += Linear(dimension=32)
+    model2 += LeakyRelu()
+    model2 += Linear(dimension=16)(output="output")
+
+    # For more complex connections, provide explicit connection
+    # information as below. I/O terminals of models can be named
+    # arbitrarily.
+    model = Model()
+    model += model1(output="output1")
+    model += model2(output="output2")
+    model += Add()(left="output1", right="output2", output="output")
+
+
+def test_readme_model_2():
+    from mithril.models import Add, LeakyRelu, Linear, Model, Relu
+
+    # A simple two-layer network where connections are
+    # made implicitly through "standard" inputs/outputs.
+    # Note the use of the "+=" operator for adding new models.
+    model1 = Model()
+    model1 += Linear(dimension=32)
+    model1 += Relu()
+    model1 += Linear(dimension=16)(output="output")
+
+    # Let's make another network just like the one above.
+    model2 = Model()
+    model2 += Linear(dimension=32)
+    model2 += LeakyRelu()
+    model2 += Linear(dimension=16)(output="output")
+
+    # For more complex connections, provide explicit connection
+    # information as below. I/O terminals of models can be named
+    # arbitrarily.
+    model = Model()
+    model += model1(output="output1")
+    model += model2(output="output2")
+    model += Add()(left="output1", right="output2", output="output")
+
+    import mithril as ml
+
+    # Create backends, specify the precision
+    backend_jax = ml.JaxBackend(precision=64)
+    backend_numpy = ml.NumpyBackend(precision=32)
+
+    # Compile the model with different backends, optionally specify
+    # the file to write the generated code into and whether to use jit
+    # compilation
+    jax_model = ml.compile(  # noqa
+        model=model,
+        backend=backend_jax,
+        jit=False,
+        file_path="generated_code.py",
+        static_keys={"input": ml.TBD},
+    )
+    numpy_model = ml.compile(
+        model=model,
+        backend=backend_numpy,
+        static_keys={"input": ml.TBD},
+        shapes={"input": [3, 3]},
+    )
+
+    # Compile different logical models with the same backend
+    other_model = Model()
+    other_model += Linear(dimension=32)
+    jax_model1 = ml.compile(
+        model=other_model,
+        backend=backend_jax,
+        static_keys={"input": ml.TBD},
+        shapes={"input": [3, 3]},
+    )
+
+    # Evaluate the compiled JAX model
+    jax_params = jax_model1.randomize_params()
+    jax_inputs = {"input": backend_jax.ones(3, 3)}
+    output = jax_model1.evaluate(jax_params, jax_inputs)  # noqa
+
+    # Compute gradients of the compiled numpy model
+    params = numpy_model.randomize_params()
+    inputs = {"input": backend_numpy.ones(3, 3)}
+    gradients = {"output": backend_numpy.ones(3, 16)}
+    gradients = numpy_model.evaluate_gradients(params, inputs, gradients)  # noqa

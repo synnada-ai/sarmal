@@ -1318,7 +1318,7 @@ class ParallelBackend(Backend[DataType]):
         )
 
 
-class UnavailableBackend(Backend[DataType]):
+class UnavailableBackend:
     is_installed = False
 
     def __init__(self, *args, **kwargs) -> None:

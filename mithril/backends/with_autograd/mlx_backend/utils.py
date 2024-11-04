@@ -88,7 +88,7 @@ def handle_dtype(dtype: Any) -> Any:
         raise TypeError(f"Provided data type '{dtype}' not understood")
 
 
-def handle_data_precision(data: mx.array, precision: int) -> ArrayType:
+def handle_data_precision(data: mx.array, precision: int) -> mx.array:
     _dtype = data.dtype
     # Do not make any changes to boolean types.
     if _dtype != mx.bool_:  # type: ignore

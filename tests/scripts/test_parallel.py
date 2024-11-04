@@ -851,6 +851,9 @@ def test_torch_parallel_multi_parallel_3():
         "reinitialize with n_devices=4"
     )
 
+    if TorchParallel._instance is not None:
+        TorchParallel._instance.clean_up()
+
 
 # @pytest.mark.skip(reason="Only works in cuda devices")
 def test_jax_parallel_1():

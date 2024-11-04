@@ -87,7 +87,7 @@ except ImportError:
 
 try:
     from .backends.with_manualgrad.c_backend.backend import CBackend
-except ImportError:
+except Exception:
     CBackend = UnavailableBackend  # type: ignore
 
 try:
