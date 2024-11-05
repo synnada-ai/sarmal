@@ -2,6 +2,7 @@
 
 [![codecov](https://codecov.io/github/synnada-ai/sarmal/graph/badge.svg?token=OMLCCRZ3RW)](https://codecov.io/github/synnada-ai/sarmal)
 
+
 Mithril is an [Apache-licensed](http://www.apache.org/licenses/LICENSE-2.0) flexible machine learning library designed to simplify the composition and compilation of gradient-based models. It focuses on three core principles: versatile composability, framework-agnostic code generation, and easy parallelization. Mithril supports model creation across multiple lower-level libraries like [JAX](https://jax.readthedocs.io/en/latest/index.html), [PyTorch](https://pytorch.org/), [NumPy](https://numpy.org/) (and in the near future, bare [CUDA](https://developer.nvidia.com/cuda-zone)), offering symbolic shape inference and unified model/data parallelism to streamline the development of scalable and trainable models.
 
 ## 🚀 Key Features
