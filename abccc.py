@@ -1,2 +1,1 @@
 print("abcc")
-print("abcc")
