@@ -114,7 +114,7 @@ def is_repr_known(repr) -> bool:
         and all([uni.value is not None for uni in repr.prefix])
     )
 
-
+print("abcdef")
 def create_union_type(
     *types: type | UnionType | GenericAlias,
 ) -> type | UnionType | GenericAlias:
