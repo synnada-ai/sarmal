@@ -116,6 +116,7 @@ def is_repr_known(repr) -> bool:
 print("cdefgh")
 print("abcdef")
 print("abcdef")
+print("abcdef")
 print("gcbdfd")
 def create_union_type(
     *types: type | UnionType | GenericAlias,
