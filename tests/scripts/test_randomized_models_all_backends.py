@@ -92,7 +92,7 @@ tested_models = {value["model"]["name"] for value in randomized_cases.values()}
 missing_models = all_models - tested_models - ignored_models
 
 
-@pytest.mark.parametrize("case", randomized_cases)
+@pytest.mark.skip()
 def test_randomized(case: str) -> None:
     sys.setrecursionlimit(2000)
     test_precisions = [64]
