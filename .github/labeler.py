@@ -1,0 +1,7 @@
+root:
+- changed-files:
+  - any-glob-to-any-file: '*'
+
+physical:
+- changed-files:
+  - any-glob-to-any-file: 'mithril/framework/physical/*'
