@@ -142,7 +142,7 @@ __all__ = [
     "SiLU",
 ]
 
-
+print("abcdef")
 class Pool1D(Model):
     input: Connection
     kernel_size: Connection
