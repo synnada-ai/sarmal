@@ -4,4 +4,18 @@ on:
     workflows: ["Pull Request Labeler"]
     types: 
       - completed
+
+jobs:
+  assign-labels:
+    runs-on: ubuntu-latest
+    steps:
+    - name: print all labels    
+      run: |
+       x=${{ toJson(github.event.pull_request.labels.*.name) }}
+       echo $x
+
+    - name: deploy        
+      if: contains(github.event.pull_request.labels.*.name, 'root')      
+      run: |
+        gh pr edit --add-assignee mehmetozsoy1
       
