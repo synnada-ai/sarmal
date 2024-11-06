@@ -6,6 +6,10 @@ jobs:
   labeler:
     runs-on: ubuntu-latest
     steps:
+    - name: Check out the repository
+      uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
     - uses: actions/labeler@v5
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
