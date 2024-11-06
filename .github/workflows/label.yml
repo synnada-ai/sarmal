@@ -15,19 +15,19 @@ jobs:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
         sync-labels: true
 
-  assign-labels:
-    needs: labeler
-    runs-on: ubuntu-latest
-    steps:
-    - name: print all labels    
-      run: |
-       x=${{ toJson(github.event.pull_request.labels.*.name) }}
-       echo $x
+  # assign-labels:
+  #   needs: labeler
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: print all labels    
+  #     run: |
+  #      x=${{ toJson(github.event.pull_request.labels.*.name) }}
+  #      echo $x
 
-    - name: deploy        
-      if: contains(github.event.pull_request.labels.*.name, 'root')      
-      run: |
-        gh pr edit --add-assignee mehmetozsoy1
+  #   - name: deploy        
+  #     if: contains(github.event.pull_request.labels.*.name, 'root')      
+  #     run: |
+  #       gh pr edit --add-assignee mehmetozsoy1
 
 
 
