@@ -9,3 +9,7 @@ physical:
 logical models:
 - changed-files:
   - any-glob-to-any-file: ['mithril/framework/models/*']
+
+logical models:
+- changed-files:
+  - any-glob-to-any-file: ['mithril/framework/models/*']
