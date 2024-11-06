@@ -1,12 +1,12 @@
-root:
+'root':
 - changed-files:
   - any-glob-to-any-file: ["**"]
 
-physical:
+'physical':
 - changed-files:
   - any-glob-to-any-file: ['mithril/framework/physical/**/*']
 
-logical models:
+'logical models':
 - changed-files:
   - any-glob-to-any-file: ['mithril/framework/models/*']
 
