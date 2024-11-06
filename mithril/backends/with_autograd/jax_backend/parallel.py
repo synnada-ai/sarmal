@@ -20,7 +20,7 @@ from jax.experimental import mesh_utils
 from jax.sharding import PositionalSharding
 
 from ...parallel import Parallel
-
+print("sfsdfdsfds")
 
 class JaxParallel(Parallel[jax.numpy.ndarray]):
     def __init__(self, n_devices: int, device: str) -> None:
