@@ -195,6 +195,8 @@ class HingeLoss(SupervisedLoss):
         )
 
 
+
+
 class QuadHingeLoss(SupervisedLoss):
     def __init__(self) -> None:
         super().__init__(
