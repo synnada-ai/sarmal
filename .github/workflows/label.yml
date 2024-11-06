@@ -5,24 +5,19 @@ on:
 jobs:
   labeler:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
     - name: Check out the repository
       uses: actions/checkout@v4
       with:
         ref: ${{ github.event.pull_request.head.ref }}
     - uses: actions/labeler@v5
+    - id: labeler
       with:
-        repo-token: "${{ secrets.PAT }}"
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
         sync-labels: true
-
-  assign-labels:
-    needs: labeler
-    runs-on: ubuntu-latest
-    steps:
-    - name: Check out the repository
-      uses: actions/checkout@v4
-
-    - name: deploy        
-      if: contains(github.event.pull_request.labels.*.name, 'root')      
+    - id: assign_people
+      if: contains(steps.labeler.outputs.all-labels, 'physical')
       run: |
         gh pr edit --add-assignee mehmetozsoy1
