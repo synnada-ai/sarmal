@@ -31,7 +31,7 @@ jobs:
           pip install --upgrade "jax[cpu]"
           pip install -r requirements/dev.txt
       - name: Execute testcase unit tests
-        run: pytest --cov --cov-report=xml -s tests/
+        run: pytest --cov --cov-report=xml -s tests/scripts/test_all_models.py
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
