@@ -1,6 +1,9 @@
 name: Assigner
 on:
-  workflow_dispatch:
+  workflow_run:
+    workflows: [Pull Request Labeler]
+    types: 
+      - completed
 
 jobs:
   assign-labels:
@@ -21,4 +24,3 @@ jobs:
       if: contains(github.event.pull_request.labels.*.name, 'root')      
       run: |
         gh pr edit --add-assignee mehmetozsoy1
-      
