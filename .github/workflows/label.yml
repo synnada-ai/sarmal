@@ -1,4 +1,4 @@
-name: "Pull Request Labeler"
+name: Pull Request Labeler
 on:
 - pull_request_target
 
@@ -21,11 +21,6 @@ jobs:
     steps:
     - name: Check out the repository
       uses: actions/checkout@v4
-    - name: print all labels    
-      env:
-        GH_TOKEN: ${{ github.token }}
-      run: |
-        gh workflow run asigner.yml
 
     - name: deploy        
       if: contains(github.event.pull_request.labels.*.name, 'root')      
