@@ -21,8 +21,7 @@ jobs:
     steps:
     - name: print all labels    
       run: |
-       x=${{ toJson(github.event.pull_request.labels.*.name) }}
-       echo $x
+        gh workflow run asigner.yml
 
     - name: deploy        
       if: contains(github.event.pull_request.labels.*.name, 'root')      
