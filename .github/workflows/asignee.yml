@@ -9,6 +9,10 @@ jobs:
   assign-labels:
     runs-on: ubuntu-latest
     steps:
+    - name: Check out the repository
+      uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
     - name: print all labels    
       run: |
        x=${{ toJson(github.event.pull_request.labels.*.name) }}
