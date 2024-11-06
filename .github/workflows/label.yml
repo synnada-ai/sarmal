@@ -11,13 +11,14 @@ jobs:
       with:
         ref: ${{ github.event.pull_request.head.ref }}
     - uses: actions/labeler@v5
+      id: pr-labeler
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
         sync-labels: true
     - id: print_assignments
       run: |
-        echo "label=${{ toJson(steps.labeler.outputs.all-labels) }}"
+        echo "label=${{ toJson(steps.pr-labeler.outputs.all-labels) }}"
     - id: assign_people
-      if: contains(steps.labeler.outputs.all-labels, 'physical')
+      if: contains(steps.pr-labeler.outputs.all-labels, 'physical')
       run: |
         gh pr edit --add-assignee mehmetozsoy1
