@@ -193,7 +193,7 @@ class HingeLoss(SupervisedLoss):
             formula_key="hinge_loss",
             output=TensorType(["N", ("Var", ...)], float),
         )
-
+print("abcdef")
 
 class QuadHingeLoss(SupervisedLoss):
     def __init__(self) -> None:

@@ -20,7 +20,7 @@ from ...core import DataType
 from ..common import TBD, GenericDataType, MainValueType, Scalar, Tensor, ValueType
 from ..logical.primitive import PrimitiveModel
 
-
+print("flat_graph.py")
 class FlatGraph(GenericDataType[DataType]):
     @dataclass
     class Connection:

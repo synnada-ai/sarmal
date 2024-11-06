@@ -96,6 +96,7 @@ from .primitives import (
     Where,
 )
 
+print("cdefgh")
 __all__ = [
     "Linear",
     "ElementWiseAffine",
