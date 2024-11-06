@@ -19,6 +19,8 @@ jobs:
     needs: labeler
     runs-on: ubuntu-latest
     steps:
+    - name: Check out the repository
+      uses: actions/checkout@v4
     - name: print all labels    
       env:
         GH_TOKEN: ${{ github.token }}
