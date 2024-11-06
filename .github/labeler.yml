@@ -8,5 +8,5 @@
 
 'logical models':
 - changed-files:
-  - any-glob-to-any-file: ['mithril/framework/models/*']
+  - any-glob-to-any-file: ['mithril/framework/models/**/*']
 
