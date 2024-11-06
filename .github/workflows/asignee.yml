@@ -17,6 +17,12 @@ jobs:
       run: |
        x=${{ toJson(github.event.pull_request.labels.*.name) }}
        echo $x
+    - name: print labels
+      env:
+        PR_LABELS_JSON: ${{ toJson(github.event.pull_request.labels) }}
+      run: |
+        echo "PR_LABELS_JSON=${PR_LABELS_JSON}"
+    
 
     - name: deploy        
       if: contains(github.event.pull_request.labels.*.name, 'root')      
