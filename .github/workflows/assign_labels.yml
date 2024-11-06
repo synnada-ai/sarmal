@@ -14,7 +14,7 @@ jobs:
     - name: Check out the repository
       uses: actions/checkout@v4
       with:
-        fetch-depth: 0
+        ref: ${{ github.event.pull_request.head.ref }}
     - name: Check which label was applied
       id: label_check
       if: ${{ github.event.label.name == 'physical' }}
