@@ -1,7 +1,7 @@
-name: asignee
+name: Assigner
 on:
   workflow_run:
-    workflows: ["labeler"]
+    workflows: ["Pull Request Labeler"]
     types: 
       - completed
       
