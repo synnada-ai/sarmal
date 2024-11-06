@@ -9,7 +9,7 @@ jobs:
   assign-reviewer:
     runs-on: ubuntu-latest
     env:
-      GH_TOKEN: ${{ github.token }}
+      GH_TOKEN: ${{ github.PAT }}
     steps:
     - name: Check out the repository
       uses: actions/checkout@v4
