@@ -95,7 +95,7 @@ from .primitives import (
     Unique,
     Where,
 )
-
+print("mithril.models.models.py")
 __all__ = [
     "Linear",
     "ElementWiseAffine",
