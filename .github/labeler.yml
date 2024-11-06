@@ -6,10 +6,6 @@ physical:
 - changed-files:
   - any-glob-to-any-file: ['mithril/framework/physical/**/*']
 
-physical:
-- changed-files:
-  - any-glob-to-any-file: ['mithril/framework/constraints.py']
-
 logical models:
 - changed-files:
   - any-glob-to-any-file: ['mithril/framework/models/*']
