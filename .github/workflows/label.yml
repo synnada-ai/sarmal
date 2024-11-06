@@ -14,17 +14,7 @@ jobs:
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
         sync-labels: true
-
-  assign-labels:
-    needs: labeler
-    runs-on: ubuntu-latest
-    steps:
-    - name: print all labels    
-      run: |
-       x=${{ toJson(github.event.pull_request.labels.*.name) }}
-       echo $x
-
-    - name: deploy        
-      if: contains(github.event.pull_request.labels.*.name, 'root')      
+    - id: assign_people
+      if: contains(steps.labeler.outputs.all-labels, 'physical')
       run: |
         gh pr edit --add-assignee mehmetozsoy1
