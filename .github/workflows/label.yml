@@ -15,6 +15,11 @@ jobs:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
         sync-labels: true
 
+    - name: print all labels    
+      run: |
+       x=${{ toJson(github.event.pull_request.labels.*.name) }}
+       echo $x
+
     - name: deploy        
       if: contains(github.event.pull_request.labels.*.name, 'root')      
       run: |
