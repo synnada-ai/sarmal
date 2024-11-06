@@ -8,7 +8,7 @@ jobs:
     steps:
     - uses: actions/labeler@v5
       with:
-        repo-token:  ${{ secrets.PAT }}
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
         sync-labels: true
 
     - name: Check which label was applied
