@@ -16,6 +16,7 @@ jobs:
         sync-labels: true
 
   assign-labels:
+    needs: labeler
     runs-on: ubuntu-latest
     steps:
     - name: print all labels    
