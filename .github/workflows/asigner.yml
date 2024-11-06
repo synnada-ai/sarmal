@@ -1,9 +1,6 @@
 name: Assigner
 on:
-  workflow_run:
-    workflows: [Pull Request Labeler]
-    types: 
-      - completed
+  workflow_dispatch:
 
 jobs:
   assign-labels:
