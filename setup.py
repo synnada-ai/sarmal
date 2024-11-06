@@ -40,7 +40,7 @@ with open("README.md") as f:
     long_description = f.read()
 
 setuptools.setup(
-    name="mithril",
+    name="sarmal",
     version="0.2.10",
     author="Synnada, Inc.",
     author_email="opensource@synnada.ai",
