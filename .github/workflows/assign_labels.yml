@@ -8,6 +8,8 @@ on:
 jobs:
   assign-reviewer:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
     - name: Check which label was applied
       id: label_check
