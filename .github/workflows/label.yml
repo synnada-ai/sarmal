@@ -11,10 +11,6 @@ jobs:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
         sync-labels: true
 
-
-  assign-reviewer:
-    runs-on: ubuntu-latest
-    steps:
     - name: Check which label was applied
       id: label_check
       run: echo "label=${{ github.event.label.name }}" >> $GITHUB_ENV
