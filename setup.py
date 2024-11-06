@@ -41,7 +41,7 @@ with open("README.md") as f:
 
 setuptools.setup(
     name="sarmal",
-    version="0.2.10",
+    version="0.2.15",
     author="Synnada, Inc.",
     author_email="opensource@synnada.ai",
     description="A Modular Machine Learning Library for Model Composability",
