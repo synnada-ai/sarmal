@@ -14,6 +14,9 @@ jobs:
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
         sync-labels: true
+    - id: print_assignments
+      run: |
+        echo "label=${{ toJson(steps.labeler.outputs.all-labels) }}"
     - id: assign_people
       if: contains(steps.labeler.outputs.all-labels, 'physical')
       run: |
