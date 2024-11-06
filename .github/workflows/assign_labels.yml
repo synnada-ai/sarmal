@@ -12,5 +12,5 @@ jobs:
     - name: Check which label was applied
       id: label_check
       if: ${{ github.event.label.name == 'physical' }}
-      run: gh pr review --add-reviews mehmetozsoy1
+      run: gh pr edit --add-assignee mehmetozsoy1
 
