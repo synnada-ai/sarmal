@@ -1,0 +1,7 @@
+name: asignee
+on:
+  workflow_run:
+    workflows: ["labeler"]
+    types: 
+      - completed
+      
