@@ -38,7 +38,7 @@ jobs:
       
       - name: edit issue
         run: |
-          python3 .github/scripts/comment_issue.py ${{ github.event.label.name }} "${{ github.event.issue.number }}" "${{ github.event.issue.body }}"
+          python3 .github/scripts/comment_issue.py "${{ github.event.label.name }}" "${{ github.event.issue.number }}" "${{ github.event.issue.body }}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
