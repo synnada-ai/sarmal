@@ -1,7 +1,7 @@
 # This workflow CC responsible people 
 # based on labels that assigned to the issue
 
-name: Edit an Issue
+name: CC Issue
 on:
   issues:
     types:
@@ -17,7 +17,7 @@ jobs:
       
       - name: edit issue
         run: |
-          python3 .github/scripts/comment_issue.py "${{ github.event.issue.number }}" "${{ github.event.label.name }}" "${{ github.event.issue.body }}"
+          python3 .github/scripts/cc_issue.py "${{ github.event.issue.number }}" "${{ github.event.label.name }}" "${{ github.event.issue.body }}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
