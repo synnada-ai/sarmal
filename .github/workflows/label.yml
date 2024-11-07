@@ -17,8 +17,21 @@ jobs:
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
         sync-labels: true
-        
-    - id: assign_people
-      if: contains(steps.pr-labeler.outputs.all-labels, 'physical')
+  
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install PyYAML
+      run: pip install pyyaml
+
+    - name: Assign Reviewers
+      if: steps.pr-labeler.outputs.all-labels
       run: |
-        gh pr edit --add-assignee mehmetozsoy1
+        python .github/scripts/assign_reviewers.py "${{ steps.pr-labeler.outputs.all-labels }}"
+        
+    # - id: assign_people
+    #   if: contains(steps.pr-labeler.outputs.all-labels, 'physical')
+    #   run: |
+    #     gh pr edit --add-assignee mehmetozsoy1
