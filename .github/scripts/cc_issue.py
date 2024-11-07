@@ -22,7 +22,7 @@ if (related_users := label_user_mapping.get(label)):
         lines.pop()
         users = last_line[4:].split(", ") # find all users in the CC
         users = [user[1:]  for user in users] # remove the @
-        all_users = set(users) | related_users # cobine the old and new users
+        all_users = set(users) | related_users # combine the old and new users
     else:
         # add three lines for formatting
         lines.append("")
