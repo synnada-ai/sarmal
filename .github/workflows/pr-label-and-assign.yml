@@ -1,4 +1,4 @@
-name: Pull Request Labeler
+name: PR Label and Assigner
 on:
 - pull_request_target
 
@@ -8,11 +8,13 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
+    
     - name: Check out the repository
       uses: actions/checkout@v4
       with:
         ref: ${{ github.event.pull_request.head.ref }}
-    - id: pr-labeler
+        
+    - id: pr-labeler # label the Pull Request based on change in files
       uses: actions/labeler@v5
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
@@ -26,12 +28,8 @@ jobs:
     - name: Install PyYAML
       run: pip install pyyaml
 
-    - name: Assign Reviewers
+    - name: Assign Reviewers # Assign responsible people based on labels
       if: steps.pr-labeler.outputs.all-labels
       run: |
         python .github/scripts/assign_reviewers.py "${{ steps.pr-labeler.outputs.all-labels }}"
         
-    # - id: assign_people
-    #   if: contains(steps.pr-labeler.outputs.all-labels, 'physical')
-    #   run: |
-    #     gh pr edit --add-assignee mehmetozsoy1
