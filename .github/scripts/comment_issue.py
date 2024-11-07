@@ -3,9 +3,9 @@ import yaml # type: ignore
 import subprocess
 
 # Load labels from GitHub Action input
-body = sys.argv[1]
+number = sys.argv[1]
 label = sys.argv[2].split(',')
-number = sys.argv[3]
+body = sys.argv[3]
 
 # Load the label-user mapping from the YAML file
 with open('.github/label_to_devs.yml', 'r') as file:
