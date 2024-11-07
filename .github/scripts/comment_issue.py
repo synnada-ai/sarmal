@@ -4,7 +4,7 @@ import subprocess
 
 # Load labels from GitHub Action input
 number = sys.argv[1]
-label = sys.argv[2].split(',')
+label = sys.argv[2]
 body = sys.argv[3]
 
 # Load the label-user mapping from the YAML file
