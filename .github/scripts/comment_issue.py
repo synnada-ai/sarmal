@@ -30,7 +30,7 @@ if (related_users := label_user_mapping.get(label)):
         lines.append("")
         all_users = related_users
     
-    new_line = "CC: " + "".join(f"@{user}, " for user in all_users)
+    new_line = "CC: " + "".join(f"@{user}, " for user in all_users)[:-2]
     lines[-1] = new_line
     new_body = "".join(f"{line}\n" for line in lines)[: -1]
     command = f"gh issue edit {number} --body '{new_body}'"
