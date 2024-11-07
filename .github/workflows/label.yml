@@ -29,9 +29,6 @@ jobs:
     - name: Assign Reviewers
       if: steps.pr-labeler.outputs.all-labels
       run: |
-        ls -la
-        cd .github
-        ls -la
         python .github/scripts/assign_reviewers.py "${{ steps.pr-labeler.outputs.all-labels }}"
         
     # - id: assign_people
