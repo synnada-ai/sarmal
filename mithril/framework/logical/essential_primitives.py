@@ -15,6 +15,7 @@
 from collections.abc import Mapping, Sequence
 from types import EllipsisType, NoneType, UnionType
 
+print("345")
 from ... import core
 from ...core import Constant, Dtype
 from ..common import (
@@ -1082,7 +1083,6 @@ class BitwiseOperators(PrimitiveModel):
         output: ConnectionType = NOT_GIVEN,
     ) -> ExtendInfo:
         return super().__call__(left=left, right=right, output=output)
-
 
 class LogicalAnd(BitwiseOperators):
     def __init__(self) -> None:

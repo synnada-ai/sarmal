@@ -17,6 +17,7 @@ from collections.abc import Callable
 
 from ..physical.model import PhysicalModel
 
+print("3456")
 
 class CodeGen(ABC):
     def __init__(self, pm: PhysicalModel) -> None:
