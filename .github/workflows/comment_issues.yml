@@ -1,0 +1,25 @@
+name: Add comment
+on:
+  issues:
+    types:
+      - labeled
+jobs:
+  add-comment:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - id: label-issue
+        uses: actions/labeler@v5
+      
+      - name: edit issue
+        run: |
+          python3 .github/scripts/comment_issue.py "${{ steps.label-issue.outputs.all-labels }}" "${{ github.event.issue.number }}" "${{ github.event.issue.body }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          NUMBER: ${{ github.event.issue.number }}
+          BODY: ${{ github.event.issue.body }}

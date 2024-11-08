@@ -279,6 +279,7 @@ class BaseModel(abc.ABC):
         # Solve constraints with the updated values.
         model.constraint_solver(updates)
 
+    print("abcdeefhx")
     def set_types(
         self,
         types: Mapping[str | Connection, type | UnionType]

@@ -28,6 +28,8 @@ class AST(ABC):
 class Expr(AST):
     pass
 
+print("3456")
+
 
 @dataclass
 class Stmt(AST):
